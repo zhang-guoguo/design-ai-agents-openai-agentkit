@@ -1,0 +1,49 @@
+{
+  "max_recent_pairs": 2,
+  "auto_summarize": true,
+  "summary": "嗨！我也很高兴认识你。  \n我是 Codex，可以直接在你本机帮你写/改代码、跑脚本和测试、排查报错、做代码评审或生成小工具。\n\n你现在需要我做什么？给我简要目标、报错信息或仓库路径就行。  \n如果还没想好，我也可以先帮你：\n- 浏览仓库结构并给出改进建议\n- 搭建基础脚手架/开发环境\n- 写一个最小可行的示例或测试用例",
+  "facts": [
+    "包管理：pnpm / yarn / npm",
+    "Node 版本与是否 monorepo（pnpm workspace/Turborepo 等）",
+    "测试：Vitest/Jest、Playwright/Cypress",
+    "是否在国内源环境（需要镜像）",
+    "你也可以直接回我编号或问题，我按主题开干：",
+    "1) 排错定位（贴报错/截图/复现步骤/仓库路径）",
+    "2) 性能优化（Lighthouse/包体积分析/首屏策略）",
+    "3) 工程规范（ESLint+Prettier+Husky+lint-staged 一键落地）",
+    "4) 测试体系（Vitest 基座 + Playwright/Cypress 示例）",
+    "5) 组件与文档（Storybook 接入与按需打包）",
+    "6) CI/CD（GitHub Actions/阿里云流水线缓存与发布）",
+    "7) 国内环境加速（npm/pnpm 源、Puppeteer/Playwright 镜像）",
+    "如果你现在就被一个报错卡住，直接贴：",
+    "复现命令（如 pnpm dev / build）",
+    "终端错误全文或截图",
+    "仓库路径（我本地帮你跑一遍）",
+    "嗨！也很高兴认识你。可以的，我随时待命。",
+    "我能帮你：",
+    "修复/优化代码，写脚本或小工具",
+    "排查构建/运行错误，分析日志",
+    "增加单元测试、CI 配置、格式化/静态检查",
+    "做代码评审，找出潜在问题与重构建议",
+    "搭建脚手架、配置本地开发或打包发布",
+    "想从哪开始？给我一点上下文即可：项目简介、语言/框架、目标或报错信息（以及相关文件路径）。如果你已经有具体任务，也可以直接告诉我要改的文件和期望行为。"
+  ],
+  "recent": [
+    {
+      "role": "user",
+      "content": "我住在上海"
+    },
+    {
+      "role": "assistant",
+      "content": "太好了，Mia！你在上海的话，我可以更贴近你的节奏。你现在想让我帮你哪方面？\n- 按中国时区（UTC+8）安排/提醒\n- 配置国内开发镜像（PyPI/npm/Homebrew）提速\n- 本地生活建议（咖啡店、联合办公、地铁线路）\n- 直接上你的项目/代码问题\n\n回我一个选项或简单说下你的目标就行。"
+    },
+    {
+      "role": "user",
+      "content": "我是一个前端开发"
+    },
+    {
+      "role": "assistant",
+      "content": "太棒了！前端同好。先了解下你的技术栈，方便我贴着来：\n- 框架：React / Vue / Svelte / Next / Nuxt / 其它？\n- 语言与构建：TypeScript? 打包器 Vite / Webpack / Rspack？\n- 包管理：pnpm / yarn / npm？\n- 测试：Vitest/Jest、Playwright/Cypress？\n- 是否在国内源环境（需要镜像加速）？\n\n我能帮的方向（回我编号或直接说问题）：\n1) 排错加速：根据报错/截图/复现步骤快速定位并给修复方案  \n2) 性能优化：Lighthouse/包体积分析、首屏/懒加载、缓存与图片策略  \n3) 工程规范：ESLint+Prettier+Husky+lint-staged 一键落地  \n4) 测试体系：Vitest 单测基座 + Playwright/Cypress E2E 示例  \n5) 组件与文档：Storybook 接入、按需打包、可访问性检查  \n6) CI/CD：GitHub Actions/阿里云流水线，缓存依赖、构建与发布  \n7) 国内环境：npm/pnpm 源、Puppeteer/Playwright 国内下载镜像配置\n\n如果你现在就想提速国内开发，先给你几条常用命令（不影响现有项目）：\n- pnpm: pnpm config set registry https://registry.npmmirror.com\n- npm: npm config set registry https://registry.npmmirror.com\n- Puppeteer 二进制国内：PUPPETEER_DOWNLOAD_BASE_URL=https://npmmirror.com/mirrors npm i\n\n告诉我你的栈或贴一个当前卡住的报错/仓库路径，我马上开干。"
+    }
+  ]
+}
