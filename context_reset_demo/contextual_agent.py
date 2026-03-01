@@ -5,7 +5,10 @@ from openai import OpenAI
 from context_memory import ContextMemory
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(
+    api_key=os.getenv("OPENAI_API_KEY"),
+    base_url="https://codex-api-slb.packycode.com/v1"
+)
 
 STATE_PATH = "context_state.json"
 SYSTEM_INSTRUCTIONS = (
@@ -30,7 +33,7 @@ def save_memory(mem: ContextMemory) :
     except Exception:
         pass
 
-def _chat(messages, model="gpt-4.1-mini", temperature=0.3) -> str:
+def _chat(messages, model="gpt-5.2-2025-12-11", temperature=0.3) -> str:
     resp = client.chat.completions.create(model=model, messages=messages, temperature=temperature)
     if resp.choices and resp.choices[0].message and resp.choices[0].message.content:
         return resp.choices[0].message.content.strip()
@@ -45,7 +48,7 @@ def _extract_profile_facts(text: str) -> List[str]:
         {"role": "system", "content": sys_prompt},
         {"role": "user", "content": text}
     ]
-    facts_text = _chat(msgs, model="gpt-4.1-mini", temperature=0.0)
+    facts_text = _chat(msgs, model="gpt-5.2-2025-12-11", temperature=0.0)
     return [ln.strip(" -. ").strip() for ln in facts_text.splitlines() if ln.strip()]
 
 def _summarize_overflow(mem: ContextMemory):
@@ -57,7 +60,7 @@ def _summarize_overflow(mem: ContextMemory):
         {"role": "system", "content": "Summarize into 3-6 concise bullets with facts, decisions, deadlines."},
         {"role": "user", "content": transcript}
     ]
-    chunk = _chat(sum_msgs, model="gpt-4.1-mini", temperature=0.2)
+    chunk = _chat(sum_msgs, model="gpt-5.2-2025-12-11", temperature=0.2)
     if chunk:
         mem. append_summary(chunk)
 
@@ -72,13 +75,13 @@ def chat_once(user_text: str, mem: ContextMemory) -> str:
     messages += mem. context_messages ()
     messages. append({"role": "user", "content": user_text})
 
-    reply = _chat(messages, model="gpt-4.1-mini", temperature=0.3) or "(No reply)"
+    reply = _chat(messages, model="gpt-5.2-2025-12-11", temperature=0.3) or "(No reply)"
     mem.add_assistant(reply)
 
     if len(mem.thread_recent) >= 2:
         last_two = mem. thread_recent[-2:]
         mini = "\n".join([f"{m['role'].upper()}: {m['content']}" for m in last_two])
-        facts = extract_profile_facts(mini)
+        facts = _extract_profile_facts(mini)
         if facts:
           mem. upsert_profile_facts(facts)
 
@@ -97,7 +100,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(USAGE); sys.exit(0)
 
-    mem = load_memory ()
+    mem = load_memory()
 
     if sys.argv[1] == " -- reset-all":
         mem.reset_all(); save_memory(mem)

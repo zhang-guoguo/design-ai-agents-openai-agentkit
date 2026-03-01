@@ -8,12 +8,12 @@ class ContextMemory:
       - thread: recent turns + summary (cleared on new topic)
     """
 
-    def _init_(self, max_recent_pairs: int = 4):
+    def __init__(self, max_recent_pairs: int = 4):
         self.max_recent_pairs = max_recent_pairs
         self.profile_facts: List[str] = []
         self.thread_recent: List[Dict[str, str]] = []
         self.thread_summary: Optional[str] = None
-        self ._ pending_overflow: List[Dict[str, str]] = []
+        self._pending_overflow: List[Dict[str, str]] = []
 
 
     def add_user(self, text: str):
@@ -22,7 +22,7 @@ class ContextMemory:
 
     def add_assistant(self, text: str):
         self.thread_recent.append({"role": "assistant", "content": text})
-        self ._ trim()
+        self._trim()
 
 
     def _trim(self):
@@ -30,13 +30,13 @@ class ContextMemory:
         if len(self.thread_recent) > max_msgs:
             overflow = self.thread_recent [ :- max_msgs]
             self.thread_recent = self.thread_recent [-max_msgs : ]
-            self._ pending_overflow = overflow
+            self._pending_overflow = overflow
         else:
-            self._ pending_overflow = []
+            self._pending_overflow = []
 
     def pop_pending_overflow(self) -> List[Dict[str, str]]:
-        ov = self ._ pending_overflow
-        self ._ pending_overflow = []
+        ov = self._pending_overflow
+        self._pending_overflow = []
         return ov
 
     def context_messages(self) -> List[Dict[str, str]]:
@@ -73,7 +73,7 @@ class ContextMemory:
         """Soft reset: keep profile facts, clear thread memory."""
         self.thread_recent = []
         self.thread_summary = None
-        self ._ pending_overflow = []
+        self._pending_overflow = []
 
     def reset_all(self):
         """Hard reset: clear everything. """

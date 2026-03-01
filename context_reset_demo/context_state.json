@@ -1,0 +1,26 @@
+{
+  "max_recent_pairs": 4,
+  "profile_facts": [
+    "Got it. Do you want to reset the conversation context, or reset your project/workspace?",
+    "Reply \"conversation\" to start fresh",
+    "For project/workspace, reply with numbers (comma‑separated is fine). I’ll do a dry‑run first:",
+    "1) Git clean reset (hard reset to HEAD; remove untracked/ignored)",
+    "2) JS/TS deps (remove node_modules/lockfile; clear npm/yarn/pnpm cache)",
+    "3) Python env (remove venv, __pycache__, .pytest_cache; reinstall reqs)",
+    "4) Build artifacts (dist, build, .next, .turbo, target, coverage)",
+    "5) Docker (stop containers; prune images/volumes)",
+    "6) Editors/tooling caches (.vscode, .idea, tool caches)",
+    "If your project root isn’t the current directory, tell me the path"
+  ],
+  "thread_recent": [
+    {
+      "role": "user",
+      "content": "-- reset-all"
+    },
+    {
+      "role": "assistant",
+      "content": "Got it. Did you want to reset the conversation context, or reset your project/workspace?\n\n- Conversation: I’ll forget prior context and treat your next message as a fresh start.\n- Project/workspace: Tell me what to reset. Pick any of these (reply with numbers):\n  1) Git clean reset (hard reset to HEAD, remove untracked incl. build artifacts)\n  2) JS/TS deps (remove `node_modules`/lockfile, reinstall; clear npm/yarn/pnpm cache)\n  3) Python env (remove venv, `__pycache__`, `.pytest_cache`, reinstall requirements)\n  4) Build artifacts (e.g., `dist`, `build`, `.next`, `.turbo`, `target`, `coverage`)\n  5) Docker (stop containers, prune images/volumes)\n  6) Editors/tooling (VSCode `.vscode`, `.idea`, tooling caches)\n\nI’ll do a dry-run first (show what would be deleted) and then ask you to confirm before any destructive step."
+    }
+  ],
+  "thread_summary": null
+}
